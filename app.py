@@ -13,6 +13,34 @@ st.set_page_config(
     layout="wide"
 )
 
+page_bg = """
+<style>
+[data-testid="stAppViewContainer"] {
+    background-image: url("https://instandeebinhthanh.com/wp-content/uploads/2024/11/anh-thien-nhien-dep-1024x640.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+[data-testid="stHeader"] {
+    background: rgba(0,0,0,0);
+}
+
+[data-testid="stSidebar"] {
+    background: rgba(255,255,255,0.85);
+}
+
+.block-container {
+    background: rgba(255,255,255,0.88);
+    padding: 2rem;
+    border-radius: 20px;
+}
+</style>
+"""
+
+st.markdown(page_bg, unsafe_allow_html=True)
+
 st.markdown("""
 <style>
 .main {
