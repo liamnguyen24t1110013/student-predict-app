@@ -147,7 +147,7 @@ with tab1:
 
         st.markdown(f"""
         <div class="result-pass">
-        <h2>✅ PASS</h2>
+        <h2>✅ ĐẬU</h2>
         <h3>Xác suất đậu: {probability[1]*100:.2f}%</h3>
         </div>
         """, unsafe_allow_html=True)
@@ -156,7 +156,7 @@ with tab1:
 
         st.markdown(f"""
         <div class="result-fail">
-        <h2>❌ FAIL</h2>
+        <h2>❌ RỚT</h2>
         <h3>Nguy cơ rớt: {probability[0]*100:.2f}%</h3>
         </div>
         """, unsafe_allow_html=True)
