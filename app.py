@@ -113,22 +113,15 @@ tab1, tab2, tab3 = st.tabs([
 with tab1:
 
     st.sidebar.header("📥 Nhập thông tin sinh viên")
-
-    studytime = st.sidebar.slider("📚 Thời gian học", 1, 4, 2)
-failures = st.sidebar.slider("❌ Số lần trượt", 0, 4, 0)
-absences = st.sidebar.slider("📅 Số buổi vắng", 0, 30, 5)
-goout = st.sidebar.slider("🎉 Mức độ đi chơi", 1, 5, 2)
-internet = st.sidebar.selectbox("🌐 Có Internet", ["Có", "Không"])
-
-if internet == "Có":
-    internet = 1
-else:
-    internet = 0
-
-G1 = st.sidebar.slider("📝 Điểm học kỳ 1", 0, 20, 10)
-G2 = st.sidebar.slider("📝 Điểm học kỳ 2", 0, 20, 10)
-Medu = st.sidebar.slider("👩 Trình độ học vấn của mẹ", 0, 4, 2)
-age = st.sidebar.slider("🎂 Tuổi", 15, 22, 18)
+studytime = st.sidebar.slider("Study Time", 1, 4, 2)
+failures = st.sidebar.slider("Failures", 0, 4, 0)
+absences = st.sidebar.slider("Absences", 0, 30, 5)
+goout = st.sidebar.slider("Go Out", 1, 5, 2)
+internet = st.sidebar.selectbox("Internet", [0,1])
+G1 = st.sidebar.slider("G1", 0, 20, 10)
+G2 = st.sidebar.slider("G2", 0, 20, 10)
+Medu = st.sidebar.slider("Mother Education", 0, 4, 2)
+age = st.sidebar.slider("Age", 15, 22, 18)
     input_data = pd.DataFrame({
         'studytime':[studytime],
         'failures':[failures],
