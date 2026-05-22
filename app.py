@@ -28,6 +28,7 @@ st.markdown("""
 
 .result-pass {
     background-color: #dcfce7;
+    color: #065f46;
     padding: 20px;
     border-radius: 15px;
     border: 2px solid green;
@@ -35,6 +36,7 @@ st.markdown("""
 
 .result-fail {
     background-color: #fee2e2;
+    color: #991b1b;
     padding: 20px;
     border-radius: 15px;
     border: 2px solid red;
