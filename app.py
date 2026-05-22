@@ -48,6 +48,7 @@ st.title("🎓 Hệ thống Dự đoán Kết quả Học tập Sinh viên")
 
 @st.cache_data
 def load_data():
+
     np.random.seed(42)
 
     data = pd.DataFrame({
@@ -76,6 +77,7 @@ def load_data():
 
 @st.cache_resource
 def train_model():
+
     data = load_data()
 
     X = data.drop("result", axis=1)
@@ -113,15 +115,17 @@ tab1, tab2, tab3 = st.tabs([
 with tab1:
 
     st.sidebar.header("📥 Nhập thông tin sinh viên")
-studytime = st.sidebar.slider("Study Time", 1, 4, 2)
-failures = st.sidebar.slider("Failures", 0, 4, 0)
-absences = st.sidebar.slider("Absences", 0, 30, 5)
-goout = st.sidebar.slider("Go Out", 1, 5, 2)
-internet = st.sidebar.selectbox("Internet", [0,1])
-G1 = st.sidebar.slider("G1", 0, 20, 10)
-G2 = st.sidebar.slider("G2", 0, 20, 10)
-Medu = st.sidebar.slider("Mother Education", 0, 4, 2)
-age = st.sidebar.slider("Age", 15, 22, 18)
+
+    studytime = st.sidebar.slider("📚 Thời gian học", 1, 4, 2)
+    failures = st.sidebar.slider("❌ Số lần trượt", 0, 4, 0)
+    absences = st.sidebar.slider("📅 Số buổi vắng", 0, 30, 5)
+    goout = st.sidebar.slider("🎉 Mức độ đi chơi", 1, 5, 2)
+    internet = st.sidebar.selectbox("🌐 Có Internet", [0,1])
+    G1 = st.sidebar.slider("📝 Điểm học kỳ 1", 0, 20, 10)
+    G2 = st.sidebar.slider("📝 Điểm học kỳ 2", 0, 20, 10)
+    Medu = st.sidebar.slider("👩 Học vấn của mẹ", 0, 4, 2)
+    age = st.sidebar.slider("🎂 Tuổi", 15, 22, 18)
+
     input_data = pd.DataFrame({
         'studytime':[studytime],
         'failures':[failures],
@@ -140,13 +144,16 @@ age = st.sidebar.slider("Age", 15, 22, 18)
     st.subheader("🎯 Kết quả dự đoán")
 
     if prediction == 1:
+
         st.markdown(f"""
         <div class="result-pass">
         <h2>✅ PASS</h2>
         <h3>Xác suất đậu: {probability[1]*100:.2f}%</h3>
         </div>
         """, unsafe_allow_html=True)
+
     else:
+
         st.markdown(f"""
         <div class="result-fail">
         <h2>❌ FAIL</h2>
@@ -155,14 +162,13 @@ age = st.sidebar.slider("Age", 15, 22, 18)
         """, unsafe_allow_html=True)
 
     importance = model.feature_importances_
-    features = input_data.columns
 
     importance_df = pd.DataFrame({
-        'Feature': features,
+        'Feature': input_data.columns,
         'Importance': importance
     }).sort_values(by="Importance", ascending=False)
 
-    st.subheader("📈 Feature Importance")
+    st.subheader("📈 Mức độ ảnh hưởng của các yếu tố")
 
     fig = px.bar(
         importance_df,
@@ -191,7 +197,11 @@ with tab2:
 
     st.plotly_chart(fig_cm, use_container_width=True)
 
-    report = classification_report(y_test, y_pred, output_dict=True)
+    report = classification_report(
+        y_test,
+        y_pred,
+        output_dict=True
+    )
 
     report_df = pd.DataFrame(report).transpose()
 
